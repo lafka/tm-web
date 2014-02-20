@@ -1,0 +1,195 @@
+@font-face {
+    font-family: 'dejavu_sansbook';
+    src: url('DejaVuSans-webfont.eot');
+    src: url('DejaVuSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DejaVuSans-webfont.woff') format('woff'),
+         url('DejaVuSans-webfont.ttf') format('truetype'),
+         url('DejaVuSans-webfont.svg#dejavu_sansbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+body,p, a {
+	font-family: "dejavu_sansbook" ;
+}
+#header {
+	padding-top: 20px;
+	padding-bottom: 80px;
+	background-color: #418bca;
+	color: #ffffff;
+}
+
+#header > .container {
+	position: relative;
+}
+
+#search {
+	background-color: #418bca;
+	position: absolute;
+	top: 20px;
+	right: 0px;
+}
+
+#header a {
+	color: #ffffff;
+}
+#headerlinks {
+	padding-top: 85px;
+}
+
+#text {
+	padding-top: 70px;
+	background-image:url('tm-demo-board.png');
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+#case {
+	padding-top: 70px;
+}
+#button-one {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	background-color: #155bb0;
+	border-radius: 2px;
+
+}
+#button-two {
+	margin-top: 10px;
+	font-size: 14px;
+	background-color: #d40000;
+
+}
+#topnav {
+	font-size: 14px;
+	margin-top: 10px;
+	margin-left: 90px;
+}
+.front-text {
+	padding-bottom: 60px;
+}
+.nav-tabs > li > a:hover {
+	background-color: #ffffff;
+	color: #757474;
+}
+.nav-tabs {
+	background-color: transparent;
+}
+
+.nav-tabs > li {
+	font-size: 15px;
+	background: #ffffff;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.nav-tabs > li > a {
+
+	color: #a9a9a9;
+	display: inline-block;
+	background: #fff;
+}
+
+.nav-tabs > li.active {
+	background: #fff;
+}
+.nav-tabs li.active {
+	border-radius: 0px;
+}
+.nav-tabs li.active a {
+	background-color: #418bca;
+	color: #ffffff;
+	border-radius: 0px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+.nav-tabs > li.active > a:hover {
+	background-color: #3777ad;
+	color: #ffffff;
+}
+
+
+.nav-tabs > li > a {
+	border-top-right-radius: 2px;
+	background: #fff;
+	padding-top: 13px;
+}
+
+
+.form-control {
+	border: none;
+	border-radius: 1px;
+}
+
+.btn-default {
+	background-color: #66a2d4;
+	border-radius: 2px;
+	height: 34px;
+}
+.btn-default:hover {
+	color: #ffffff;
+	background-color: #3777ad;
+}
+.form-group:before {
+    content:'';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url(http://getbootstrap.com/2.3.2/assets/img/glyphicons-halflings.png);
+    background-position: -48px 0;
+    position: absolute;
+    top:5px;
+    left:210px;
+    opacity: .5;
+}
+footer, footer h5 {
+	font-size: 14px;
+}
+
+footer h5 {
+	font-weight: bold;
+	line-height: 1.1;
+	color: inherit;
+}
+
+
+footer {
+	line-height: 1.42857;
+	padding-bottom: 40px !important;
+ 	margin-top: 60px !important;
+padding-top: 60px !important;
+}
+
+footer > .container {
+	border-top: 1px solid rgb(238, 238, 238);
+	position: relative;
+	padding-top: 30px;
+}
+	footer .footer-meta {
+		font-size: 0.9em;
+		border-radius: 3px;
+		border: 2px solid #eaeaea;
+		border-bottom: none;
+		background: #fff;
+		padding: 8px 15px 0;
+		position: absolute;
+		top: -28px;
+		right: 22px; }
+
+footer .nav li a, footer .nav li a:visited {
+	padding: 5px 10px; }
+footer a, footer  a:visited {
+	color: rgb(66, 139, 202);	}
+footer .nav li a:hover {
+	background: transparent;
+	text-decoration: underline; }
+footer hr {
+	border: none;
+	width: 100%;
+border-width: 1px 0px 0px;
+border-style: solid none none;
+border-color: rgb(238, 238, 238)
+
+}
