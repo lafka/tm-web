@@ -41,7 +41,7 @@ body,p, a {
 
 #text {
 	padding-top: 70px;
-	background-image:url('tm-demo-board.png');
+	background-image:url('tm-demo-bord2.png');
 	background-repeat: no-repeat;
 	background-position: bottom right;
 }
@@ -69,6 +69,9 @@ body,p, a {
 }
 .front-text {
 	padding-bottom: 60px;
+}
+.nav-pills > li > a:hover {
+	background-color: #3777ad;
 }
 .nav-tabs > li > a:hover {
 	background-color: #ffffff;
@@ -141,7 +144,7 @@ body,p, a {
     background-position: -48px 0;
     position: absolute;
     top:5px;
-    left:210px;
+    left:195px;
     opacity: .5;
 }
 footer, footer h5 {

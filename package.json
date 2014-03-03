@@ -1,0 +1,27 @@
+{
+  "name": "tm-web",
+  "version": "0.1.0",
+  "description": "Tinymesh website",
+  "keywords": [
+    "tinymesh"
+  ],
+  "author": "Olav Frengstad <olav@tiny-mesh.com>",
+  "homepage": "https://tiny-mesh.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lafka/tm-web.git"
+  },
+  "dependencies": {
+	"marked": "*",
+	"js-yaml": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-markdown": "git://github.com/lafka/grunt-markdown#lafka-meta-marked",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*"
+  }
+}
