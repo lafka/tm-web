@@ -12,7 +12,7 @@
 			</div>
 			<div id="topnav" class="col-md-5">
 				<ul class="nav nav-pills">
-					<li class="<%= uri === '/' ? 'active' : '' %>"><a href="<%= sitemap['/'].meta[0].uri %>"><%= sitemap['/'].meta[0].title %></a></li>
+					<li class="<%= uri === '' ? 'active' : '' %>"><a href="<%= sitemap['/'].meta[0].uri %>"><%= sitemap['/'].meta[0].title %></a></li>
 					<% for (i in sitemap['/'].children) {
 							var item = sitemap['/'].children[i],
 							    href = item.meta[0].uri;
