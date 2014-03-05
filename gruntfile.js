@@ -100,7 +100,8 @@ module.exports = function (grunt) {
 					menuproc: menuProc
 				},
 				templates: {
-					'header': 'app/tpl/header.jst'
+					'header': 'app/tpl/header.jst',
+					'box': 'app/tpl/box.jst',
 				}
 			}
 		},

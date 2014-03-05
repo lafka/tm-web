@@ -6,6 +6,7 @@ var yaml = require('js-yaml');
 
 // Splits the given string into a meta section and a markdown section if a meta section is present, else returns null
 function splitInput(str) {
+	str = str.trim();
 	return str.substring(0, 3) === '---' ?
 		str.substring(3).split('---') :
 		null;

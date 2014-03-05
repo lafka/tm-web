@@ -47,18 +47,21 @@ module.exports = function(grunt) {
 	};
 
 	util.template = function(elem, src, cfg, ctx) {
-		var regex = new RegExp("<" + elem + ">\\s?([\\s\\S]*?)</" + elem + ">", "g");
+		var regex = new RegExp("<" + elem + ">\\s*?([\\s\\S]*?)</" + elem + ">", "g");
+		console.log("this ", elem);
 		return src.replace(regex, function(match, inner) {
 			if (cfg.parser) {
-				var parsed = cfg.parser(inner, {}, null, true),
+
+				var parsed = cfg.parser(inner, {}, null),
 				    tpl = grunt.file.read(cfg.templates[elem]);
-				if (!parsed.meta.inline) {
-					if (ctx[elem]) {
+				if (false === parsed.meta.inline) {
+					if (!ctx[elem]) {
 						ctx[elem] = [];
 					}
 
 					ctx[elem].push(parsed);
 				} else {
+					console.log(parsed.meta);
 					return grunt.template.process(tpl, {data: parsed});
 				}
 			}
@@ -100,8 +103,6 @@ module.exports = function(grunt) {
 				, true),
 			meta = res.meta;
 
-			console.log(meta);
-
 			meta.uri = file.dest.replace(/^dist\//, '')
 			                    .replace(/\/index.html$/, '');
 
@@ -129,9 +130,6 @@ module.exports = function(grunt) {
 				group[meta.group_by].push(meta.title);
 			}
 		}
-
-		console.log(urimap);
-
 
 		// build menu
 		var parent  = undefined,
