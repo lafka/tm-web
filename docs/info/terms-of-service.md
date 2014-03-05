@@ -1,6 +1,6 @@
 ---
 title: Terms of Service
-menu: true
+menu: false
 ---
 
 

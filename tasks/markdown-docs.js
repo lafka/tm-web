@@ -38,7 +38,6 @@ module.exports = function(grunt) {
 
 			src = util.fixLinks(src, docs);
 			for (var tpl in cfg.templates) {
-				ctx.header = [];  
 				src = util.template(tpl, src, cfg, ctx);
 			}
 
@@ -48,25 +47,26 @@ module.exports = function(grunt) {
 
 	util.template = function(elem, src, cfg, ctx) {
 		var regex = new RegExp("<" + elem + ">\\s*?([\\s\\S]*?)</" + elem + ">", "g");
-		console.log("this ", elem);
 		return src.replace(regex, function(match, inner) {
-			if (cfg.parser) {
+			try {
+				if (cfg.parser) {
+					var parsed = cfg.parser(inner, {}, null),
+						tpl = grunt.file.read(cfg.templates[elem]);
+					if (false === parsed.meta.inline) {
+						if (!ctx[elem]) {
+							ctx[elem] = [];
+						}
 
-				var parsed = cfg.parser(inner, {}, null),
-				    tpl = grunt.file.read(cfg.templates[elem]);
-				if (false === parsed.meta.inline) {
-					if (!ctx[elem]) {
-						ctx[elem] = [];
+						ctx[elem].push(parsed);
+					} else {
+						return grunt.template.process(tpl, {data: parsed});
 					}
-
-					ctx[elem].push(parsed);
-				} else {
-					console.log(parsed.meta);
-					return grunt.template.process(tpl, {data: parsed});
 				}
-			}
 
-			return inner;
+				return inner;
+			} catch(e) {
+				return "oh noes,error time";
+			}
 		});
 	}
 
@@ -103,8 +103,8 @@ module.exports = function(grunt) {
 				, true),
 			meta = res.meta;
 
-			meta.uri = file.dest.replace(/^dist\//, '')
-			                    .replace(/\/index.html$/, '');
+			meta.uri = file.dest.replace(/^dist\/*/, '/')
+			                    .replace(/\/index.html$/, '') || '/';
 
 			if (!docs[meta.title])
 				docs[meta.title] = []
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
 		var parent  = undefined,
 		    uris = Object.keys(urimap),
 		    parentlist = {},
-			cleanup = ['', '/', '/docs'];
+			cleanup = [];
 
 		uris.sort();
 
@@ -152,14 +152,16 @@ module.exports = function(grunt) {
 			parent = findparent(uris[i]);
 
 			if (!uris[i].match(/\.html$/) || !parent) {
+				console.log("where's my parent?", uris[i]);
 				parentlist[ uris[i] ] = {
 					uri:      uris[i],
 					meta: docs[urimap[uris[i]]],
 					children: []
 				};
 
-				if (parent) {
-					parentlist[ parent ].children.push(parentlist[ uris[i] ]);
+				if ('/' !== uris[i]) {
+					console.log("but i added myself to", parent || '/', "anyway");
+					parentlist[ parent || '/' ].children.push(parentlist[ uris[i] ]);
 				}
 			} else {
 				parentlist[ parent ].children.push({

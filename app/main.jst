@@ -12,10 +12,14 @@
 			</div>
 			<div id="topnav" class="col-md-5">
 				<ul class="nav nav-pills">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Contact Us</a></li>
+					<li><a href="<%= sitemap['/'].meta[0].uri %>"><%= sitemap['/'].meta[0].title %></a></li>
+					<% for (i in sitemap['/'].children) {
+							if (false !== sitemap['/'].children[i].meta[0].menu) { %>
+									<li><a href="<%= sitemap['/'].children[i].meta[0].uri %>">
+										<%= sitemap['/'].children[i].meta[0].title %>
+									</a></li>
+					<%	}
+					} %>
 				</ul>
 			</div>
 			<div id="search" class="col-md-4">
@@ -26,18 +30,11 @@
 					<button type="submit" class="btn btn-default btn-sm">Search</button>
 				</form>
 			</div>
-			<% for (i in header) { %>
-				<%= header[i].content %>
-			<% } %>
 		</div>
-		<div class="container">
-			<% for (i in header) { %>
-				<a><%= header[i].meta.title %></a>
-			<% } %>
-		</div>	
+		<pre>
+		</pre>
 	</div>
 	<div>
-		<pre><%= JSON.stringify(sitemap) %></pre>
 	</div>
 	<div class="container">
 		<div class="row">
