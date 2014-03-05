@@ -12,13 +12,15 @@
 			</div>
 			<div id="topnav" class="col-md-5">
 				<ul class="nav nav-pills">
-					<li><a href="<%= sitemap['/'].meta[0].uri %>"><%= sitemap['/'].meta[0].title %></a></li>
+					<li class="<%= uri === '/' ? 'active' : '' %>"><a href="<%= sitemap['/'].meta[0].uri %>"><%= sitemap['/'].meta[0].title %></a></li>
 					<% for (i in sitemap['/'].children) {
-						if (false !== sitemap['/'].children[i].meta[0].menu) { %>
-						<li><a href="<%= sitemap['/'].children[i].meta[0].uri %>">
-							<%= sitemap['/'].children[i].meta[0].title %>
-						</a></li>
-						<%	}
+							var item = sitemap['/'].children[i],
+							    href = item.meta[0].uri;
+							if (false !== item.meta[0].menu) { %>
+									<li class="<%= uri.match(new RegExp("^" + href)) ?  'active' : '' %>">
+										<a href="<%= href %>"><%= item.meta[0].title %></a>
+									</a></li>
+					<%	}
 					} %>
 				</ul>
 			</div>
