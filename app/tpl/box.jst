@@ -1,6 +1,4 @@
-<div>
-	<pre><%= JSON.stringify(meta) %></pre>
-	<%= html %>
-
-	<a href="#"><button id="button-one" type="button" class="btn btn-primary">Docs and examples</button></a>
-</div>
+<div id="<%= meta.id %>" class="box-<%= meta.color %>">
+<%= html %>
+<a href="<%= meta.href %>" class="btn btn-<%= meta.color %>"><%= meta.text %></a>
+</div>	

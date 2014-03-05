@@ -118,8 +118,11 @@ module.exports = function (grunt) {
 		copy: {
 			fonts: {
 				files: [
-					{ src: 'app/img/branding.png'
-					, dest: '<%= dest %>/assets/img/branding.png' },
+					{ src: 'app/img/*'
+					, dest: '<%= dest %>/assets/img/' 
+					, flatten: true
+					, expand: true
+					, filter: 'isFile'},
 
 					{ src: ['app/css/DejaVuSans*']
 					, dest: '<%= dest %>/assets/css/'

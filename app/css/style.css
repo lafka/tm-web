@@ -39,33 +39,47 @@ body,p, a {
 	padding-top: 85px;
 }
 
-#text {
+#demo-board-box {
 	padding-top: 70px;
-	background-image:url('tm-demo-bord2.png');
+	padding-bottom: 70px;
+	padding-right: 50px;
+	background-image:url('/assets/img/tm-demo-board.png');
 	background-repeat: no-repeat;
-	background-position: bottom right;
+	background-position: right 100px;
+}
+#demo-board-box > .btn {
+	display: inline-block;
+	margin-top: 30px;
+
 }
 #case {
 	padding-top: 70px;
 }
-#button-one {
+
+#topnav {
+	font-size: 14px;
+	margin-top: 10px;
+	margin-left: 90px;
+}
+.btn-blue {
 	margin-top: 10px;
 	margin-bottom: 20px;
 	font-size: 14px;
 	background-color: #155bb0;
 	border-radius: 2px;
-
 }
-#button-two {
+.btn-red {
 	margin-top: 10px;
 	font-size: 14px;
 	background-color: #d40000;
-
 }
-#topnav {
-	font-size: 14px;
-	margin-top: 10px;
-	margin-left: 90px;
+.btn-blue:hover {
+background-color: #155bb0;
+color: #ffffff;
+}
+.btn-red:hover {
+	background-color: #d40000;
+	color: #ffffff;
 }
 .front-text {
 	padding-bottom: 60px;
@@ -161,8 +175,6 @@ footer h5 {
 footer {
 	line-height: 1.42857;
 	padding-bottom: 40px !important;
- 	margin-top: 60px !important;
-padding-top: 60px !important;
 }
 
 footer > .container {

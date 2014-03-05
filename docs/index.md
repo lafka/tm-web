@@ -1,50 +1,17 @@
 ---
 title: Home
 menu: true
+tpl: app/tpl/index.jst
 ---
 
+<div class="col-md-8">
 
-<header>
----
-title: Wireless Sensors
-inline: false
----
+<h2>A Tiny philosophy</h2>
 
-# Control a output, control the world
-
-Using the GPIO capabilities built into the tinymesh modules,
-interacting with the phuysical world becomes triviail.
-</header>
-
-<header>
----
-title: Network Backbone
-inline: false
----
-
-# Network backbone
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-hendrerit id nunc ac ultrices. Nullam orci augue, laoreet ac dui non.
-</header>
-
-<header>
----
-title: Cable replacement
-inline: false
----
-
-# Drop-in cable replacement
-
-Cable vestibulum euismod ac augue eget feugiat. Duis vestibulum eu lectus ut vulputate
-</header>
-
-
-# Tinymesh
-
-<b>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit id nunc ac ultrices. Nullam orci augue, laoreet ac dui non, congue vestibulum dui.</b>
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit id nunc ac ultrices. Nullam orci augue, laoreet ac dui non, congue vestibulum dui. Nunc vestibulum eu mi ac congue. Sed malesuada in metus id ultricies. Cras lacinia ante quis tempor tempus. Suspendisse elementum euismod feugiat. Praesent ac aliquam lacus, sit amet luctus turpis. Vestibulum euismod ac augue eget feugiat. Duis vestibulum eu lectus ut vulputate.
+<p><b>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt vitae erat et malesuada. In eu felis vel erat lobortis hendrerit.
+</b></p>
+<p>Vivamus ac ante dui. Maecenas bibendum est in vulputate consectetur. Nulla suscipit nibh eros, vel condimentum purus placerat id. Vivamus pharetra nisi sed nisl hendrerit euismod. Sed lacinia justo massa, eu euismod nulla ullamcorper ut. Donec vel egestas tortor.</p>
 
 <box>
 ---
@@ -52,22 +19,31 @@ color: blue
 background: /mjau
 text: Tinymesh Protocol Docs
 href: /asd
+id: demo-board-box
 ---
 
-# Some stuff
+# The tiniest stack
 
-I'm content in a blue box
+The user matches the signature provided by server with it's client key, is
+to verify that no changes have been made to the request. If verification
+succeeds the client can assume normal operation.
 </box>
 
 <box>
 ---
 color: red
-text: Get Started
+text: Get Started with Tinymesh Cloud
 href: /asdads
 ---
 
-# Connectivity, anyhere
+# Connectivity, anywhere
 
-
-I'm content in a red box
+The user matches the signature provided by server with it's client key, is
+to verify that no changes have been made to the request.
 </box>
+</div>
+<aside class="col-md-4">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada diam erat, eu placerat metus vulputate quis. Praesent metus nisi, ornare eu venenatis ut, ullamcorper non tellus. Vestibulum ultricies eu turpis convallis lacinia. Vestibulum dignissim erat dui, ac rutrum ligula consequat luctus. In lobortis dolor sed purus vestibulum rhoncus. Nam lobortis convallis sagittis. Duis luctus porta interdum. Praesent a urna eros. Mauris quis velit in eros aliquam sollicitudin quis vitae orci. Fusce id arcu ut libero volutpat varius ut sed tellus. Morbi ut tortor pharetra, eleifend nisi vitae, cursus ipsum.
+
+
+</aside>
