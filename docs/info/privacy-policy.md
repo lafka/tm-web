@@ -1,7 +1,11 @@
 ---
 title: Privacy Policy
 menu: false
+group_by: ["Security & Privacy"]
+footer: true
 ---
+
+# Privacy Policy
 
 
 

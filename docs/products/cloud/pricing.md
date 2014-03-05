@@ -1,6 +1,8 @@
 ---
 title: Pricing
 menu: true
+group_by: ["What we do"]
+footer: true
 ---
 
 

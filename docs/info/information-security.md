@@ -1,7 +1,12 @@
 ---
 title: Information Security
 menu: false
+group_by: ["Security & Privacy"]
+footer: true
 ---
+
+
+# Information Security
 
 
 

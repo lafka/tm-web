@@ -3,25 +3,36 @@
 	<title>Tinymesh || <%= title %></title>
 	<link href="/assets/css/style.css" rel="stylesheet">
 	<meta charset=utf-8 />
+	<meta name="viewport" content="width=device-width, initial-scale=0">
 </head>
 <body>
 	<div class="row" id="header">
 		<div class="container">
-			<div class="col-md-3">
-				<a href="#"><img src="/assets/img/branding.png" width="200"></img></a>
+			<div class="col-md-2">
+				<a href="/"><img src="/assets/img/branding.png" width="200"></img></a>
 			</div>
-			<div id="topnav" class="col-md-5">
+			<div id="topnav" class="col-md-6">
 				<ul class="nav nav-pills">
 					<li class="<%= uri === '' ? 'active' : '' %>"><a href="<%= sitemap['/'].meta[0].uri %>"><%= sitemap['/'].meta[0].title %></a></li>
 					<% for (i in sitemap['/'].children) {
 							var item = sitemap['/'].children[i],
 							    href = item.meta[0].uri;
-							if (false !== item.meta[0].menu) { %>
+							if (true === item.meta[0].menu) { %>
 									<li class="<%= uri.match(new RegExp("^" + href)) ?  'active' : '' %>">
 										<a href="<%= href %>"><%= item.meta[0].title %></a>
 									</a></li>
 					<%	}
 					} %>
+					<li id="nav-sitemap">
+						<a title="Sitemap">&nbsp;<i class="glyphicon glyphicon-th"></i>&nbsp;</a>
+						<div>
+						<% var m = sitemapMenu(sitemap['/'], uri); for (i in m) { %>
+							<ul class="col-md-4">
+							<%= m[i] %>
+							</ul>
+						<% } %>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<div id="search" class="col-md-4">
@@ -33,8 +44,26 @@
 				</form>
 			</div>
 		</div>
+		<div id="feature" class="container">
+			<div id="viewport">
+				<% for(i in inline.header) { %>
+					<div class="col-md-12" id="item-<%= i %>">
+						<%= inline.header[i].html %>
+					</div>
+				<% } %>
+			</div>
+		</div>
 	</div>
-	<div>
+	<% if (inline.header && inline.header.length > 0) { %>
+	<div class="container">
+		<ul class="nav nav-tabs">
+			<% for (i in inline.header) { %>
+				<li class="<%= 0 == i ? 'active' : '' %>">
+					<a href="#item-<%= i %>"><%= inline.header[i].meta.text %></a>
+				</li>
+			<% } %>
+		</ul>
+	<% } %>
 	</div>
 	<div class="container">
 		<div class="row">
@@ -47,10 +76,12 @@
 				<h5>What we do</h5>
 
 				<ul class="nav">
-					<li><a href="#">Overview</a></li>
-					<li><a href="#">Case studies</a></li>
-					<li><a href="#">Pricing</a></li>
-					<li><a href="#">The TinySolution Network</a></li>
+					<% for (i in groups['What we do']) { %>
+						<% var doc = docs[groups["What we do"][i]][0]; %>
+						<% if (true === doc.footer) { %>
+							<li><a href="<%= doc.alias || doc.uri %>"><%= doc.title %></a></li>
+						<% } %>
+					<% } %>
 				</ul>
 			</div>
 
@@ -58,10 +89,12 @@
 				<h5>Support</h5>
 
 				<ul class="nav">
-					<li><a href="#">Getting Started</a></li>
-					<li><a href="#">Documentation</a></li>
-					<li><a href="#">Hardware integration</a></li>
-					<li><a href="#">TinyMesh protocol</a></li>
+					<% for (i in groups['Support']) { %>
+						<% var doc = docs[groups["Support"][i]][0]; %>
+						<% if (doc.footer) { %>
+							<li><a href="<%= doc.alias || doc.uri %>"><%= doc.title %></a></li>
+						<% } %>
+					<% } %>
 				</ul>
 			</div>
 
@@ -69,8 +102,12 @@
 				<h5>About Us</h5>
 
 				<ul class="nav">
-					<li><a href="#">Company</a></li>
-					<li><a href="#">Contact us</a></li>
+					<% for (i in groups['About Us']) { %>
+						<% var doc = docs[groups["About Us"][i]][0]; %>
+						<% if (doc.footer) { %>
+							<li><a href="<%= doc.alias || doc.uri %>"><%= doc.title %></a></li>
+						<% } %>
+					<% } %>
 				</ul>
 
 				<br>
@@ -78,9 +115,12 @@
 				<h5>Security &amp; Privacy</h5>
 
 				<ul class="nav">
-					<li><a href="#">Information Security</a></li>
-					<li><a href="#">Terms of service</a></li>
-					<li><a href="#">Privacy Policy</a></li>
+					<% for (i in groups['Security & Privacy']) { %>
+						<% var doc = docs[groups["Security & Privacy"][i]][0]; %>
+						<% if (doc.footer) { %>
+							<li><a href="<%= doc.alias || doc.uri %>"><%= doc.title %></a></li>
+						<% } %>
+					<% } %>
 				</ul>
 			</div>
 
@@ -88,16 +128,16 @@
 				<h5>Secure, real-time communication</h5>
 
 				<p>
-					Extending the <b>TinyMesh</b> protocol, <b>TinySolution</b>
+					Extending the <b>Tinymesh</b> protocol, <b>Tinymesh Cloud</b>
 					ensures secure and fault-tolerant communication over a real-time
 					network backbone; creating a robust platform tailored for
-					automating industry, office and homes.
+					automating industry, offices and homes.
 				</p>
 
 				<hr>
 
 				<p>
-					&copy; 2012-2013 <a href="https://tiny-mesh.com">Tiny Mesh AS</a>.
+					&copy; 2012-2014 <a href="https://tiny-mesh.com">Tiny Mesh AS</a>.
 				</p>
 			</div>
 		</div>

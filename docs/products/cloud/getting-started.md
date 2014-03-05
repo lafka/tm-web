@@ -1,6 +1,8 @@
 ---
 title: Getting Started
 menu: true
+group_by: ["Support"]
+footer: true
 ---
 
 

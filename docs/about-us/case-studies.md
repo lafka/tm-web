@@ -1,6 +1,8 @@
 ---
 title: Case Studies
 menu: true
+group_by: ["What we do"]
+footer: true
 ---
 
 

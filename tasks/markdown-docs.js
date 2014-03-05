@@ -37,6 +37,8 @@ module.exports = function(grunt) {
 			}
 
 			src = util.fixLinks(src, docs);
+
+			ctx.inline = {};
 			for (var tpl in cfg.templates) {
 				src = util.template(tpl, src, cfg, ctx);
 			}
@@ -53,11 +55,12 @@ module.exports = function(grunt) {
 					var parsed = cfg.parser(inner, {}, null),
 						tpl = grunt.file.read(cfg.templates[elem]);
 					if (false === parsed.meta.inline) {
-						if (!ctx[elem]) {
-							ctx[elem] = [];
+						if (!ctx.inline[elem]) {
+							ctx.inline[elem] = [];
 						}
 
-						ctx[elem].push(parsed);
+						ctx.inline[elem].push(parsed);
+						return "";
 					} else {
 						return grunt.template.process(tpl, {data: parsed});
 					}
@@ -71,16 +74,16 @@ module.exports = function(grunt) {
 	}
 
 	/**
- 	 * Processes the target markdown files and prepares for static
- 	 * site generation.
- 	 *
- 	 * Loops through all the files matched, checks for any YAML
- 	 * annotation and builds up a the site document structure, menu
- 	 * and keywords and groups.
- 	 *
- 	 * groups: collections of one-to-many mapped documents
- 	 * keywords: many-to-many mapping for tag like structures
- 	 */
+	 * Processes the target markdown files and prepares for static
+	 * site generation.
+	 *
+	 * Loops through all the files matched, checks for any YAML
+	 * annotation and builds up a the site document structure, menu
+	 * and keywords and groups.
+	 *
+	 * groups: collections of one-to-many mapped documents
+	 * keywords: many-to-many mapping for tag like structures
+	 */
 	grunt.registerMultiTask(taskname
 		, 'Build set of annotated markdown files into static html'
 		, function() {
@@ -124,10 +127,17 @@ module.exports = function(grunt) {
 
 			if ('string' === typeof(meta.group_by)) {
 				if (!group[meta.group_by]) {
-					group[meta.group_by] = []
+					group[meta.group_by] = [];
 				}
 
 				group[meta.group_by].push(meta.title);
+			} else if ('object' === typeof(meta.group_by)) {
+				for (var g in meta.group_by) {
+					if (!group[meta.group_by[g]]) {
+						group[meta.group_by[g]] = [];
+					}
+					group[meta.group_by[g]].push(meta.title);
+				}
 			}
 		}
 
@@ -152,7 +162,6 @@ module.exports = function(grunt) {
 			parent = findparent(uris[i]);
 
 			if (!uris[i].match(/\.html$/) || !parent) {
-				console.log("where's my parent?", uris[i]);
 				parentlist[ uris[i] ] = {
 					uri:      uris[i],
 					meta: docs[urimap[uris[i]]],
@@ -160,7 +169,6 @@ module.exports = function(grunt) {
 				};
 
 				if ('/' !== uris[i]) {
-					console.log("but i added myself to", parent || '/', "anyway");
 					parentlist[ parent || '/' ].children.push(parentlist[ uris[i] ]);
 				}
 			} else {
@@ -204,6 +212,9 @@ module.exports = function(grunt) {
 			}
 		});
 
+		grunt.config('markdown.all.options.templateContext.docs', docs);
+		grunt.config('markdown.all.options.templateContext.groups', group);
+		grunt.config('markdown.all.options.templateContext.keyword', keyword);
 		grunt.config('markdown.all.options.templateContext.sitemap', parentlist);
 
 		grunt.task.run('markdown');

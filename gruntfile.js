@@ -11,33 +11,71 @@ module.exports = function (grunt) {
 	grunt.registerTask('default', ['clean', 'build', 'connect', 'watch']);
 	grunt.registerTask('build', ['concat', 'copy', 'builddocs']);
 
-	var menuProc = function(menu, uri, lvl) {
-		lvl = lvl || 0;
-		var css = ["level-" + lvl,
-		           (menu.children.length > 0 ? "ancestor" : "")
-		];
-
-		if (null !== uri.match(new RegExp("^" + menu.uri))) {
-			css.push('active');
-		}
-
-		var buf = '<li class="' + css.join(" ") + '">';
-		buf += '<a href="' + menu.uri + '" title="' + menu.meta[0].title + '">' + menu.meta[0].title + '</a>';
-
-		menu.children.sort(function(a, b) {
-			return (a.meta[0].priority || a.meta[0].title) > (b.meta[0].priority || a.meta[0].title);
-		});
-
-		if (menu.children.length > 0) {
-			buf += "<ul>\r\n";
-			for (i in menu.children) {
-				buf += menuProc(menu.children[i], uri, lvl+1);
+	var sitemapMenu = function(link, uri) {
+		var uris = {};
+		var group = function(menu, groups) {
+			for (var i in menu.meta) {
+				var item = menu.meta[i],
+					c    = item.title[0].toLowerCase().charCodeAt(0);
+				if (!groups[c]) {
+					groups[c] = [];
+				}
+				uris[menu.uri] = 1;
+				groups[c].push({uri: menu.uri, meta: item});
 			}
-			buf += "</ul>\r\n";
+			for (var i in menu.children) {
+				groups = group(menu.children[i], groups);
+			}
+
+			return groups;
+		};
+
+		var ncols = 5, c = 0, t = 0, buf = ["", "", ""],
+		    res = group(link, []);
+		var tresh = Math.ceil(Object.keys(uris).length / ncols);
+
+
+		for (n in res) {
+			console.log(ncols, Object.keys(uris).length, tresh, c, t);
+			if (t++ >= tresh) {
+				tresh += Math.ceil(Object.keys(uris).length / ncols);
+				c++;
+			}
+			buf[ c ] += "<li class=\"cat\"><b>" + String.fromCharCode(n).toUpperCase() + "</b></li>\r\n";
+			for (i in res[n]) {
+				buf[ c ] += "<li><a href=\""+res[n][i].uri+"\">"+res[n][i].meta.title+"</a></li>";
+			}
+			console.log(t);
 		}
-		buf += "</li>";
 
 		return buf;
+
+
+		//var css = ["level-" + lvl,
+		//           (menu.children.length > 0 ? "ancestor" : "")
+		//];
+
+		//if (null !== uri.match(new RegExp("^" + menu.uri))) {
+		//	css.push('active');
+		//}
+
+		//var buf = '<li class="' + css.join(" ") + '">';
+		//buf += '<a href="' + menu.uri + '" title="' + menu.meta[0].title + '">' + menu.meta[0].title + '</a>';
+
+		//menu.children.sort(function(a, b) {
+		//	return (a.meta[0].priority || a.meta[0].title) > (b.meta[0].priority || a.meta[0].title);
+		//});
+
+		//if (menu.children.length > 0) {
+		//	buf += "<ul>\r\n";
+		//	for (i in menu.children) {
+		//		buf += menuProc(menu.children[i], uri, lvl+1);
+		//	}
+		//	buf += "</ul>\r\n";
+		//}
+		//buf += "</li>";
+
+		//return buf;
 	};
 
 	grunt.initConfig({
@@ -97,7 +135,7 @@ module.exports = function (grunt) {
 				output: 'dist/map.json',
 				templateContext: {
 					title: "Tinymesh Docs",
-					menuproc: menuProc
+					sitemapMenu: sitemapMenu,
 				},
 				templates: {
 					'header': 'app/tpl/header.jst',
