@@ -3,7 +3,44 @@ title: Home
 menu: true
 ---
 
-# Mjau mjau mjau
+
+<header>
+---
+title: Wireless Sensors
+inline: false
+---
+
+# Control a output, control the world
+
+Using the GPIO capabilities built into the tinymesh modules,
+interacting with the phuysical world becomes triviail.
+</header>
+
+<header>
+---
+title: Network Backbone
+inline: false
+---
+
+# Network backbone
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+hendrerit id nunc ac ultrices. Nullam orci augue, laoreet ac dui non.
+</header>
+
+<header>
+---
+title: Cable replacement
+inline: false
+---
+
+# Drop-in cable replacement
+
+Cable vestibulum euismod ac augue eget feugiat. Duis vestibulum eu lectus ut vulputate
+</header>
+
+
+# Tinymesh
 
 <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit id nunc ac ultrices. Nullam orci augue, laoreet ac dui non, congue vestibulum dui.</b>
 
@@ -25,7 +62,7 @@ I'm content in a blue box
 <box>
 ---
 color: red
-text: Get Started  
+text: Get Started
 href: /asdads
 ---
 

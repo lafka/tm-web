@@ -1,6 +1,6 @@
 ---
 title: Information Security
-menu: true
+menu: false
 ---
 
 

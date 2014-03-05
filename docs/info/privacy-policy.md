@@ -1,6 +1,6 @@
 ---
 title: Privacy Policy
-menu: true
+menu: false
 ---
 
 
