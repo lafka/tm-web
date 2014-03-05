@@ -92,7 +92,7 @@ module.exports = function (grunt) {
 					protocol: "1.38",
 					workbench: "alpha"
 				},
-				pruneURI: function(uri) { return uri.replace(/^dist/, ''); },
+				pruneURI: function(uri) { return uri.replace(/^dist\//, ''); },
 				parser: require('./mmarker.js'),
 				output: 'dist/map.json',
 				templateContext: {
